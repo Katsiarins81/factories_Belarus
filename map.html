@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    body,html{
+        /*max-height: 100vh;*/
+        font-family: 'Montserrat', sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        overflow:hidden;
+    }
+    body{
+        background:top left url("https://newton.by/upload/medialibrary/137/137adbd9b820c15274d1c5d393021a4a.png") no-repeat;
+        background-size: 40%;
+    }
+    h1{
+        color: rgba(231, 65, 77, 1);
+        text-align: right;
+        font-size: 3rem;
+        font-weight: 900;
+        z-index: 1;
+        margin-top: 0;
+        position: absolute;
+        top:10%;
+        right: 10%;
+        width: 40%;
+
+    }
+    h1::after {
+        content: '';
+        width: 10px; height: 10px;
+        border-radius: 100%;
+        border: 6px solid rgba(231, 65, 77, 0.75);
+        position: absolute;
+        z-index: -1;
+        /*top: 50%;*/
+        /*left: 100;*/
+        transform: translate(-50%, -50%);
+        animation: ring2 2.5s 2;
+        opacity: 0;
+    }
+
+    @keyframes ring2 {
+        0% {
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+        }
+        50% {
+            width: 100px;
+            height: 100px;
+            opacity: 0.6;
+        }
+        100%{
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+        }
+    }
+
+    #karta{
+        margin-top: 30px;
+        filter: drop-shadow(10px -5px 10px rgba(231, 65, 77, 1));
+        max-width: 100%;
+    }
+    p{
+        width: 80%;
+        text-align: center;
+    }
+    #block{
+        text-align: center;
+    }
+    input[type=text]{
+        padding: 0 40px;
+        min-height: 60px;
+        border: none;
+        border-radius: 1000px;
+        outline: none;
+        font-size: 22px;
+        text-align: center;
+        color: rgba(231, 65, 77, 1);
+        text-transform: uppercase;
+    }
+    div#klad:target,div#klad2:target,
+    div#klad3:target,div#klad4:target,
+    div#klad5:target,div#klad6:target{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(231, 65, 77, 0.75);
+        box-shadow:inset 0 0 0 40px rgba(255, 255, 251, 0.75),inset 0 0 0 60px rgba(231, 65, 77, 1);
+        position: absolute;
+        bottom: 0;
+        color: whitesmoke;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 64px;
+    }
+    div#klad,div#klad2,
+    div#klad3,div#klad4,
+    div#klad5,div#klad6{
+        display: none;
+    }
+    div.true{
+        font-size: 30px;
+        padding: 10px;
+        border-radius: 30px;
+        background-color: white;
+        color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin:  auto ;
+        text-align: center;
+        transition: all .3s ease-in-out 0s;
+        border: 6px solid rgb(249, 238, 232);
+        box-shadow: 0 0 80px 80px rgba(231, 65, 77, 1) inset, 0 0 0 0 rgb(255, 255, 251);
+
+
+    }
+    div.true:hover{
+        color: rgba(231, 65, 77, 1);
+        box-shadow: 0 0 0 0 rgba(231, 65, 77, 1) inset,0 0 60px rgba(255, 255, 251, 0.75);
+        transition: all .8s ease-in-out 0s;
+    }
+
+    div.true:hover::before {
+        opacity: 1;
+    }
+    a{
+        text-decoration: none;
+        color: rgba(255, 255, 251, 0.75);
+        display: inline-block;
+    }
+    div.true{
+        display: block;
+    }
+    div.submit{
+        display: none;
+    }
+
+
+
+
+    /*кнопка проверить*/
+    .none{
+        display: none;
+    }
+
+    .button {
+        min-width: 300px;
+        min-height: 60px;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        font-weight: 700;
+        color: rgba(231, 65, 77, 1);
+        background: #fffffb;
+        border: none;
+        border-radius: 1000px;
+        box-shadow: 12px 12px 24px rgba(231, 65, 77, 0.75);
+        transition: all 0.3s ease-in-out 0s;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        padding: 10px;
+        margin: 30px;
+    }
+
+    button::before{
+        content: '';
+        border-radius: 1000px;
+        min-width: calc(300px + 12px);
+        min-height: calc(60px + 12px);
+        border: 6px solid rgba(231, 65, 77, 0.75);
+        box-shadow: 0 0 60px rgba(255, 255, 251, 0.75);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all .3s ease-in-out 0s;
+    }
+
+    .button:hover {
+        color: rgba(231, 65, 77, 0.75);
+        transform: translateY(-6px);
+    }
+
+    button:hover::before {
+        opacity: 1;
+    }
+
+    button::after {
+        content: '';
+        width: 30px; height: 30px;
+        border-radius: 100%;
+        border: 6px solid rgba(231, 65, 77, 0.75);
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ring 1.5s infinite;
+    }
+
+    button:hover::after{
+        animation: none;
+        display: none;
+    }
+
+    @keyframes ring {
+        0% {
+            width: 30px;
+            height: 30px;
+            opacity: 1;
+        }
+        100% {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+    }
+
+
+    #home{
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        bottom: 100px;
+        right: 100px;
+        background: #fadcdc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s ease;
+        box-shadow: 0 0 10px  0 rgba(231, 65, 77, 1);
+    }
+#home img{
+    width: 80px;
+    filter: invert(100%);
+    box-shadow: 0 0 0 0 rgba(231, 65, 77, 0);
+    transition: all 1s ease;
+}
+
+    #home:hover {
+        box-shadow: 0 0 20px  10px rgba(231, 65, 77, 1);
+        transition: all 1s ease;
+    }
+   </style>
+
+<body>
+<h1> ПРОВЕРЬ СЕБЯ</h1>
+<div id="block">
+    <img src="img/kartaBel.png" alt="Карта" usemap="#Navigation" id="karta"></div>
+<p>
+    <map name="Navigation">
+    <area shape="poly" coords="340,520,275,400,245,275,290,210,267,160,380,210,510,210,520,320,410,400,441,510" href="#klad" id="area1" title="Минская область" onclick="isprogress()"> <!--вызов функции-->
+    <area shape="poly" coords="377,627,375,550,549,437,560,395,650,400,725,545,654,550,615,640" href="#klad2" id="area2" title="Гомельская область" onclick="isprogress()" >
+    <area shape="poly" coords="353,633,180,590,40,610,10,530,175,465,220,400,260,400,275,465,367,547" href="#klad3" id="area3" title="Брестская область" onclick="isprogress()" >
+    <area shape="poly" coords="450,465,455,375,530,325,520,275,655,235,790,360,745,410,550,380,540,435" href="#klad4" id="area4" title="Могилевская область" onclick="isprogress()" >
+    <area shape="poly" coords="254,165,284,219,257,266,235,276,260,310,250,325,280,380,200,380,170,460,125,440,110,465,75,455,40,310,140,310,190,270,210,
+    290,220,265,210,245,230,205,225,175" href="#klad5"  id="area5" title="Гродненская область" onclick="isprogress()" >
+     <area shape="poly" coords="645,210,520,240,525,2140,380,204,300,120,280,100,320,50,365,55,415,5,515,55,580,40,620,70,645,205" href="#klad6" id="area6" title="Витебская область" onclick="isprogress()" >
+</map>
+</p>
+<!--<br> Пройдено:-->
+<!--<progress value="0" max="100" id="min" name="name"></progress>-->
+<!--<hr>-->
+<!--<table>-->
+    <!--<tr>-->
+        <!--<td bgcolor="333333" style="color:#CCCCCC">-->
+           <!--Gomel 2022-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+
+<div id="klad">
+    <p id="p">На каком заводе производят сок "ДОБРЫЙ"</p>
+    <input type="text" id="text">
+
+    <button class="button" id="check" onclick="checkAnswer()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+   <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div id="klad2">
+    <p>На какой фабрике выпускается самый вкусный шоколад?</p>
+    <input type="text" id="text2">
+
+    <button class="button" id="check2" onclick="checkAnswer2()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+    <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV2" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div id="klad3">
+    <p>Лидер молочной отрасли данной области это?</p>
+    <input type="text" id="text3">
+
+    <button class="button" id="check3" onclick="checkAnswer3()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+    <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV3" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div id="klad4">
+    <p>Основная продукция фабрики "Красный пищевик"?</p>
+    <input type="text" id="text4">
+
+    <button class="button" id="check4" onclick="checkAnswer4()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+    <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV4" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div id="klad5">
+    <p>Что не производится на гродненском консервном заводе: соки, огурцы соленые, лекёр или повидло?</p>
+    <input type="text" id="text5">
+
+    <button class="button" id="check5" onclick="checkAnswer5()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+    <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV5" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div id="klad6">
+    <p>Какой одним из старейших станкостроительных предприятий Республики Беларусь ты знаешь?</p>
+    <input type="text" id="text6">
+
+    <button class="button" id="check6" onclick="checkAnswer6()" autocomplete="off">ПРОВЕРИТЬ</button>
+
+    <!--<input type="submit" value="ПРОВЕРИТЬ" id="check" onclick="checkAnswer()" autocomplete="off">  &lt;!&ndash;вызов функции&ndash;&gt;-->
+    <a href="#" ><div id="myDIV6" class="submit third">ПРАВИЛЬНО!<br>вернуться к карте</div></a>
+</div>
+<div  class="mystyle">
+    <a href="index.html" id="home"> <img src="img/home.svg"></a>
+</div>
+<script>
+
+// работа с прогрессом
+    let size=0,
+        colorSize=0;
+    function isprogress() {    // вызов функции в html
+        document.addEventListener('click',e => {e.target.removeAttribute('onclick'); }); // удаление атрибута после клика по элементу
+       if (size!==120) size+=20
+        else colorSize="#6a3145";
+       if (size==20) colorSize="#e1aeae";
+       if (size==40) colorSize="#bc7979";
+        if (size==60) colorSize="#b7567f";
+        if (size==80) colorSize="#974c68";
+        if (size==100) colorSize="#813d59";
+
+        console.log(colorSize);// первое значение в консоле
+//        document.getElementById("min").setAttribute('value', size); //обращаемся к атрибуту и изменяем его значение
+//        document.getElementsByClassName('mystyle')[0].style.background = "rgba(size, 65, 77, 0.58)";
+        document.getElementById("home").style.background = colorSize; // изменяем значение свойства
+//        area.target.getAttribute('data-tag').removeAttribute('onclick'); // удаление
+    }
+
+//
+
+    let element = document.getElementById("myDIV");
+    let element2 = document.getElementById("myDIV2");
+    let element3 = document.getElementById("myDIV3");
+    let element4 = document.getElementById("myDIV4");
+    let element5 = document.getElementById("myDIV5");
+    let element6 = document.getElementById("myDIV6");
+    let answer=document.getElementById('text');
+    let answer2=document.getElementById('text2');
+    let answer3=document.getElementById('text3');
+    let answer4=document.getElementById('text4');
+    let answer5=document.getElementById('text5');
+    let answer6=document.getElementById('text6');
+
+
+    //убираем всплывающую подсказку из поля ввода
+    answer.addEventListener('mouseenter', function(event) {
+        event.target.setAttribute('autocomplete', 'off')
+    });
+    answer2.addEventListener('mouseenter', function(event) {
+    event.target.setAttribute('autocomplete', 'off')
+    });
+answer3.addEventListener('mouseenter', function(event) {
+    event.target.setAttribute('autocomplete', 'off')
+});
+answer4.addEventListener('mouseenter', function(event) {
+    event.target.setAttribute('autocomplete', 'off')
+});
+answer5.addEventListener('mouseenter', function(event) {
+    event.target.setAttribute('autocomplete', 'off')
+});
+answer6.addEventListener('mouseenter', function(event) {
+    event.target.setAttribute('autocomplete', 'off')
+});
+    //
+
+   function  checkAnswer(){
+    console.log(answer.value);
+    if (answer.value == "coca-cola" ||answer.value == "coca cola" || answer.value == "кока-кола" || answer.value == "Кока кола" ){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element.classList.remove("submit"); // удаление класса
+        element.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer()'); }); // вернуть элементу атрибут1
+    }
+       document.getElementById("area1").setAttribute('href','#'); //обращаемся к атрибуту и изменяем его значение
+
+}
+
+function  checkAnswer2(){
+    console.log(answer2.value);
+    if (answer2.value == "спартак" || answer2.value == "спортак"){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element2.classList.remove("submit"); // удаление класса
+        element2.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer2()'); }); // вернуть элементу атрибут
+
+    }
+    document.getElementById("area2").setAttribute('href','#');
+
+}
+function  checkAnswer3(){
+    console.log(answer3.value);
+    if (answer3.value == "савушкин продукт" ){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element3.classList.remove("submit"); // удаление класса
+        element3.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer3()'); }); // вернуть элементу атрибут
+
+    }
+    document.getElementById("area3").setAttribute('href','#');
+
+}
+function  checkAnswer4(){
+    console.log(answer4.value);
+    if (answer4.value == "зефир" || answer4.value == "мармелад"){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element4.classList.remove("submit"); // удаление класса
+        element4.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer4()'); }); // вернуть элементу атрибут
+
+    }
+    document.getElementById("area4").setAttribute('href','#');
+
+}
+function  checkAnswer5(){
+    console.log(answer5.value);
+    if (answer5.value == "лекёр" || answer5.value == "лекер"){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element5.classList.remove("submit"); // удаление класса
+        element5.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer5()'); }); // вернуть элементу атрибут
+
+    }
+    document.getElementById("area5").setAttribute('href','#');
+
+}
+function  checkAnswer6(){
+    console.log(answer6.value);
+    if (answer6.value == "вистан" ){                // только нестрогое неравенство, т.к. в поле вводится строка, а не число
+        element6.classList.remove("submit"); // удаление класса
+        element6.classList.add("true");     // добавление класса true
+    } else {
+        document.addEventListener('click',e => {e.target.setAttribute('onclick','checkAnswer6()'); }); // вернуть элементу атрибут
+
+    }
+    document.getElementById("area6").setAttribute('href','#');
+
+}
+</script>
+</body>
+</html>
