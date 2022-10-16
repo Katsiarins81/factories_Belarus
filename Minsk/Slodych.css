@@ -40,7 +40,7 @@ p.align-center{
     text-shadow: 1px 1px 10px black;
 }
 #pic{
-    background: url(img/slodych.png) center;
+    background: url(https://www.slodych.by/upload/iblock/5d6/5d604d11d71875cdd0741cfbb5d5b432.png) center;
     width: 50%;
     height: 90%;
     /*width: 752px;*/
@@ -50,8 +50,10 @@ p.align-center{
     /*border: solid ;*/
 }
 #picblum{
-    background-color:rgba(231, 65, 77, 0.75);
+    background-color:rgba(231, 65, 77, 0.35);
     border-radius: 15px;
+    width: 100%;
+    height: 100%;
 }
 main li{
     list-style: none;
