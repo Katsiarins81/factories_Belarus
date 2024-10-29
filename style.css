@@ -103,6 +103,7 @@ div#cont{
     position: absolute;
     width: 100%;
     height: 100%;/*размер фото=размеру блока*/
+    object-fit: cover;
 }
 .slide1 {
     animation:fade 30s infinite;
